@@ -16,7 +16,7 @@ def set_args():
     parser.add_argument('--learning_rate', type=float, default=0.0001, help='学习率')
     parser.add_argument('--epochs', type=int, default=500, help='训练周期数')
 
-    parser.add_argument('--warm_start_path', type=str, default=None, help='继续训练的权重的路径')
+    parser.add_argument('--warm_start_path', type=str, default='D:/MyAHDRNet/AHDRNet/checkpoint/08-03_23-31_epoch500/epoch500_81.pt', help='继续训练的权重的路径')
     parser.add_argument('--save_frequency', type=int, default=10, help='权重保存的频率，以epoch为单位')
 
 
