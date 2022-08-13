@@ -4,6 +4,7 @@ from torch.utils.data import Dataset
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
 
+import utils
 import numpy as np
 import os
 import cv2
@@ -94,9 +95,9 @@ class HDR_Dataset(Dataset):
         hdr_image = augmentations['image']
 
         # 数据处理
-        H_image1 = Gamma_Correction(image1, gamma=2.2)
-        H_image2 = Gamma_Correction(image2, gamma=2.2)
-        H_image3 = Gamma_Correction(image3, gamma=2.2)
+        H_image1 = utils.Gamma_Correction(image1, gamma=2.2)
+        H_image2 = utils.Gamma_Correction(image2, gamma=2.2)
+        H_image3 = utils.Gamma_Correction(image3, gamma=2.2)
 
         X1 = torch.cat([image1, H_image1], dim=0)
         X2 = torch.cat([image2, H_image2], dim=0)
@@ -112,26 +113,8 @@ class HDR_Dataset(Dataset):
         return sample
 
 
-def Gamma_Correction(image_tensor, gamma):
-    return torch.pow(image_tensor, 1.0/gamma)
-
-
-
-
-
 from args_file import set_args
-from matplotlib import pyplot as plt
-import pylab
-from torchvision.utils import save_image
 from torch.utils.data import DataLoader
-
-def visualize(image):
-    # Divide all values by 65535 so we can display the image using matplotlib
-    # image = image / 65535
-    plt.figure(figsize=(10, 10))
-    plt.axis('off')
-    plt.imshow(image)
-    pylab.show()
 
 
 if __name__ == '__main__':
@@ -164,11 +147,6 @@ if __name__ == '__main__':
             hdr = hdr.permute(1, 2, 0).numpy()
             # hdr = hdr[:, :, (2, 1, 0)]
             cv2.imwrite('./hdrimage3/test{}{}.hdr'.format(i, j), hdr)
-
-
-
-
-
 
     # for i in range(HDR_set.__len__()):
     #     H_image1, H_image2, H_image3 = HDR_set.__getitem__(i)
