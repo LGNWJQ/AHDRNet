@@ -106,7 +106,7 @@ def main(args):
             l1_loss_value.backward()
             optimizer.step()
 
-            loop.set_description(f"Epoch [{epoch + 1}/{args.epochs + start_epoch}]")
+            loop.set_description(f"Train Epoch [{epoch + 1}/{args.epochs + start_epoch}]")
             loop.set_postfix(
                 L1_loss=l1_loss_value.item(),
             )
@@ -115,7 +115,8 @@ def main(args):
 
         # 测试环节
         psnr_list = []
-        for i, sample_batch in enumerate(test_loader):
+        loop1 = tqdm(test_loader)
+        for i, sample_batch in enumerate(loop1):
             X1 = sample_batch['X1'].to(device)
             X2 = sample_batch['X2'].to(device)
             X3 = sample_batch['X3'].to(device)
@@ -140,6 +141,8 @@ def main(args):
                 )
             writer.add_image('HDR_Image_{}'.format(i), img_grid_H, global_step=epoch + 1)
 
+            loop1.set_description(f"Test Epoch [{epoch + 1}/{args.epochs + start_epoch}]")
+
         mean_test_psnr = sum(psnr_list) / len(psnr_list)
 
         # 学习率记录
@@ -156,25 +159,10 @@ def main(args):
                 {
                     'model_state_dict': model.state_dict(),
                     'optimizer_state_dict': optimizer.state_dict(),
-                    'epoch': (args.epochs + start_epoch)
+                    'epoch': (epoch)
                 }, save_name
             )
             print('第{}个epoch的权重保存至：'.format(epoch) + save_name)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
