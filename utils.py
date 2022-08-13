@@ -23,6 +23,10 @@ def Mu_Law(image_tensor, mu=5000):
     return torch.log(1 + image_tensor*mu) / torch.log(1 + mu)
 
 
+def Gamma_Correction(image_tensor, gamma=2.2):
+    return torch.pow(image_tensor, 1.0/gamma)
+
+
 def PSNR(image, label):
     mse = nn.functional.mse_loss(image, label)
     return 10 * torch.log10(1 / mse)
