@@ -18,11 +18,11 @@ Main Path
 ├─Test
 │  ├─EXTRA
 │  │  ├─001
-|  |  ├── 1.tif
-|  |  ├── 2.tif
-|  |  ├── 3.tif
-|  |  ├── exposure.txt
-|  |  └── HDRImg.hdr (optional)
+|  |  | ├── 1.tif
+|  |  | ├── 2.tif
+|  |  | ├── 3.tif
+|  |  | ├── exposure.txt
+|  |  | └── HDRImg.hdr (optional)
 │  │  ├─002
 │  │  ├─003
 │  │  ├─004
