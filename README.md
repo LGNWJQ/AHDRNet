@@ -65,11 +65,8 @@ Main Path
 ## Reference
 * https://github.com/qingsenyangit/AHDRNet
 
-## Some Results
-The effect of opening only with Adobe Photoshop, without any processing
 
 ![](https://raw.githubusercontent.com/LGNWJQ/picgo/main/AHDR/R3.png)
 
 ![](https://raw.githubusercontent.com/LGNWJQ/picgo/main/AHDR/R5.png)
 
-![](https://raw.githubusercontent.com/LGNWJQ/picgo/main/AHDR/R11.png)
